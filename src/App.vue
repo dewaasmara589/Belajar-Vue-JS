@@ -7,18 +7,18 @@
       </a>
     </div>
     <div class="frame-notes">
-      <button @click="newNotes" class="bg-success btn btn-new-note">
+      <button @click="newNote" class="bg-success btn btn-new-note">
         + Note Baru
       </button>
 
-      <ListNotes />
+      <ListNotes :propNotes="notes"/>
     </div>
     <!-- List -->
   </div>
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes />
+    <formNotes :propSaveNote="saveNote" />
   </div>
 </template>
 
@@ -28,9 +28,32 @@ import FormNotes from './components/formNotes.vue'
 
 export default {
   name: 'App',
+  data: function(){
+            return{
+                notes: [
+                    {title: 'wegodev',
+                    description: 'Ini isi wegode'},
+                    {title: 'Super User',
+                    description: 'Ini isi Super User'}
+                ]
+            }
+  },
   components: {
     ListNotes,
     FormNotes
+  },
+  methods: {
+    newNote(){
+
+    },
+    saveNote(title, description){
+      // console.log('title di app ' + title);
+      // console.log('description di app ' + description);
+
+      let newNote = { 'title' : title, 'description' : description }
+
+      this.notes.push(newNote);
+    }
   }
 }
 </script>
@@ -127,7 +150,7 @@ body{
 .kanan{     
   width: 100%;     
   overflow-y: scroll;     
-  eight: 100vh;     
+  weight: 100vh;     
   border-left: 1px solid gainsboro;
   }
   

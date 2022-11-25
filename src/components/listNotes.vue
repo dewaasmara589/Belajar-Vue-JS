@@ -1,7 +1,7 @@
 <template>
     <div class="listNotes">
         <ul>
-            <li v-for="(row, index) in notes" :key="index">
+            <li v-for="(row, index) in propNotes" :key="index">
                 <button class="btn-note">
                     <label>{{ row.title }}</label>
                     <span>{{ row.description }}</span>
@@ -16,12 +16,12 @@
         name: 'listNotes',
         data: function(){
             return{
-                notes: [
-                    {title: 'wegodev',
-                    description: 'Ini isi wegode'},
-                    {title: 'Super User',
-                    description: 'Ini isi Super User'}
-                ]
+                
+            }
+        },
+        props: {
+            propNotes : {
+                type: Array
             }
         }
     }
