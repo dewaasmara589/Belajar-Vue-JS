@@ -17,16 +17,20 @@
   </div>
   <div class="kanan">
     <!-- Form -->
+
+    <formNotes />
   </div>
 </template>
 
 <script>
 import ListNotes from './components/listNotes.vue'
+import FormNotes from './components/formNotes.vue'
 
 export default {
   name: 'App',
   components: {
-    ListNotes
+    ListNotes,
+    FormNotes
   }
 }
 </script>
