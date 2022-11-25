@@ -4,7 +4,8 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  publicPath: 'dist/',
+  // publicPath harus dicomen jika ingin npm run serve
+  // publicPath: 'dist/',
   outputDir: '../dist',
   indexPath: '../index.html'
 }
