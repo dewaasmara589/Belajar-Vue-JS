@@ -10,6 +10,8 @@
       <button @click="newNotes" class="bg-success btn btn-new-note">
         + Note Baru
       </button>
+
+      <ListNotes />
     </div>
     <!-- List -->
   </div>
@@ -19,12 +21,12 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import ListNotes from './components/listNotes.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    ListNotes
   }
 }
 </script>
