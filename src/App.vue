@@ -18,7 +18,7 @@
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes :propSaveNote="saveNote" :propDataForm="dataForm"/>
+    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propDataForm="dataForm"/>
   </div>
 </template>
 
@@ -32,10 +32,10 @@ export default {
             return{
                 dataForm: {},
                 notes: [
-                    {id: 1, title: 'wegodev',
-                    description: 'Ini isi wegode'},
-                    {id: 2, title: 'Super User',
-                    description: 'Ini isi Super User'}
+                    // {id: 1, title: 'wegodev',
+                    // description: 'Ini isi wegode'},
+                    // {id: 2, title: 'Super User',
+                    // description: 'Ini isi Super User'}
                 ]
             }
   },
@@ -45,13 +45,22 @@ export default {
   },
   methods: {
     newNote(){
-
+      this.dataForm = {id: 0, title: '', description: ''};
     },
     saveNote(title, description){
       // console.log('title di app ' + title);
       // console.log('description di app ' + description);
 
-      let newNote = { 'title' : title, 'description' : description }
+      let newId = 0;
+
+      if (this.notes.length === 0){
+        newId = 1;
+      }else{
+        newId = this.notes[this.notes.length - 1].id + 1;
+      }
+
+
+      let newNote = { 'id': newId, 'title' : title, 'description' : description }
 
       this.notes.push(newNote);
     },
@@ -59,7 +68,13 @@ export default {
       // console.log('App Vue : ' + id);
 
       this.dataForm = this.notes.find(note => note.id === id);
-      console.log(this.dataForm);
+      // console.log(this.dataForm);
+    },
+    updateNote(id, title, description){
+      let noteIndex = this.notes.findIndex(note => note.id === id);
+    
+      this.notes[noteIndex].title = title;
+      this.notes[noteIndex].description = description;
     }
   }
 }

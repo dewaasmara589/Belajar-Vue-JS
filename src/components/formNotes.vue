@@ -7,6 +7,7 @@
             </div>
 
             <div class="content">
+                <input type="text" class="text" placeholder="Id" v-model="id">
                 <input type="text" class="text" placeholder="Title" v-model="title">
                 <textarea class="text textarea" placeholder="Tuliskan rencana kamu..." v-model="description"></textarea>
             </div>
@@ -23,10 +24,14 @@
             },
             propDataForm: {
                 type: Object
+            },
+            propUpdateNote: {
+                type: Function
             }
         },
         data: function(){
             return{
+                id: 0,
                 title: '',
                 description: ''
             }
@@ -37,11 +42,16 @@
                 e.preventDefault();
                 // console.log(this.title, this.description);
 
-                this.propSaveNote(this.title, this.description);
+                if (this.id === 0){
+                    this.propSaveNote(this.title, this.description);
+                }else{
+                    this.propUpdateNote(this.id, this.title, this.description);
+                }
             }
         },
         watch:{
             propDataForm: function(note){
+                this.id = note.id;
                 this.title = note.title;
                 this.description = note.description;
             }
