@@ -2,7 +2,7 @@
     <div class="formNotes">
         <form @submit="submitNote">
             <div class="menu">
-                <button type="button" class="bg-danger btn btn-delete">Delete</button>
+                <button type="button" @click="submitRemove" class="bg-danger btn btn-delete">Delete</button>
                 <button type="submit" class="bg-success btn">Save</button>
             </div>
 
@@ -27,6 +27,9 @@
             },
             propUpdateNote: {
                 type: Function
+            },
+            propRemoveNote: {
+                type: Function
             }
         },
         data: function(){
@@ -47,6 +50,16 @@
                 }else{
                     this.propUpdateNote(this.id, this.title, this.description);
                 }
+            },
+            submitRemove(){
+                this.propRemoveNote(this.id);
+
+                this.resetInput();
+            },
+            resetInput(){
+                this.id = 0;
+                this.title = '';
+                this.description = '';
             }
         },
         watch:{
