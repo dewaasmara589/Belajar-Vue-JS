@@ -20,6 +20,9 @@
         props: {
             propSaveNote: {
                 type: Function
+            },
+            propDataForm: {
+                type: Object
             }
         },
         data: function(){
@@ -35,6 +38,12 @@
                 // console.log(this.title, this.description);
 
                 this.propSaveNote(this.title, this.description);
+            }
+        },
+        watch:{
+            propDataForm: function(note){
+                this.title = note.title;
+                this.description = note.description;
             }
         }
     }

@@ -11,14 +11,14 @@
         + Note Baru
       </button>
 
-      <ListNotes :propNotes="notes"/>
+      <ListNotes :propNotes="notes" :propEditNote="editNote"/>
     </div>
     <!-- List -->
   </div>
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes :propSaveNote="saveNote" />
+    <formNotes :propSaveNote="saveNote" :propDataForm="dataForm"/>
   </div>
 </template>
 
@@ -30,10 +30,11 @@ export default {
   name: 'App',
   data: function(){
             return{
+                dataForm: {},
                 notes: [
-                    {title: 'wegodev',
+                    {id: 1, title: 'wegodev',
                     description: 'Ini isi wegode'},
-                    {title: 'Super User',
+                    {id: 2, title: 'Super User',
                     description: 'Ini isi Super User'}
                 ]
             }
@@ -53,6 +54,12 @@ export default {
       let newNote = { 'title' : title, 'description' : description }
 
       this.notes.push(newNote);
+    },
+    editNote(id){
+      // console.log('App Vue : ' + id);
+
+      this.dataForm = this.notes.find(note => note.id === id);
+      console.log(this.dataForm);
     }
   }
 }

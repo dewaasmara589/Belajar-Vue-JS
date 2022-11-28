@@ -2,7 +2,7 @@
     <div class="listNotes">
         <ul>
             <li v-for="(row, index) in propNotes" :key="index">
-                <button class="btn-note">
+                <button class="btn-note" @click="idNote(row.id)">
                     <label>{{ row.title }}</label>
                     <span>{{ row.description }}</span>
                 </button>
@@ -22,6 +22,16 @@
         props: {
             propNotes : {
                 type: Array
+            },
+            propEditNote : {
+                type: Function
+            }
+        },
+        methods: {
+            idNote(id){
+                // console.log(id);
+
+                this.propEditNote(id);
             }
         }
     }
