@@ -3,7 +3,8 @@
         <form @submit="submitNote">
             <div class="menu">
                 <button type="button" @click="submitRemove" class="bg-danger btn btn-delete">Delete</button>
-                <button type="submit" class="bg-success btn">Save</button>
+                <button type="button" @click="submitSave" class="bg-success btn" v-if="mode == 'save'">Save</button>
+                <button type="button" @click="submitUpdate" class="bg-success btn" v-if="mode == 'update'">Update</button>
             </div>
 
             <div class="content">
@@ -36,20 +37,16 @@
             return{
                 id: 0,
                 title: '',
-                description: ''
+                description: '',
+                mode: 'save'
             }
         },
         methods : {
-            submitNote(e){
-                // Menghindari refresh halaman
-                e.preventDefault();
-                // console.log(this.title, this.description);
-
-                if (this.id === 0){
-                    this.propSaveNote(this.title, this.description);
-                }else{
-                    this.propUpdateNote(this.id, this.title, this.description);
-                }
+            submitSave(){
+                this.propSaveNote(this.title, this.description);
+            },
+            submitUpdate(){
+                this.propUpdateNote(this.id, this.title, this.description);
             },
             submitRemove(){
                 this.propRemoveNote(this.id);
@@ -60,6 +57,7 @@
                 this.id = 0;
                 this.title = '';
                 this.description = '';
+                this.mode = '';
             }
         },
         watch:{
@@ -67,6 +65,7 @@
                 this.id = note.id;
                 this.title = note.title;
                 this.description = note.description;
+                this.mode = note.mode;
             }
         }
     }

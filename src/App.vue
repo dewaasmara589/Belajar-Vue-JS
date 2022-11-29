@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     newNote(){
-      this.dataForm = {id: 0, title: '', description: ''};
+      this.dataForm = {id: 0, title: '', description: '', mode: 'save'};
     },
     saveNote(title, description){
       // console.log('title di app ' + title);
@@ -70,6 +70,8 @@ export default {
 
       this.dataForm = this.notes.find(note => note.id === id);
       // console.log(this.dataForm);
+
+      this.dataForm.mode = 'update';
     },
     updateNote(id, title, description){
       let noteIndex = this.notes.findIndex(note => note.id === id);
