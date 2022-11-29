@@ -18,7 +18,7 @@
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propRemoveNote="removeNote" />
+    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote"/>
   </div>
 </template>
 
@@ -61,12 +61,6 @@ export default {
     
       this.notes[noteIndex].title = title;
       this.notes[noteIndex].description = description;
-    },
-    removeNote(id){
-      let noteIndex = this.notes.findIndex(note => note.id === id);
-    
-      // Membuang sebuah array berdasarkan nilai indexnya
-      this.notes.splice(noteIndex, 1);
     }
   }
 }

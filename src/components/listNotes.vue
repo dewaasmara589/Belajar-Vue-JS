@@ -38,6 +38,13 @@
 
                 this.emitter.emit('emitForm', dataForm);
             },
+        },
+        mounted(){
+            this.emitter.on('emitRemove', data => {
+                let noteIndex = this.notes.findIndex(note => note.id === data.id);
+                
+                this.notes.splice(noteIndex, 1);
+            })
         }
     }
 </script>
