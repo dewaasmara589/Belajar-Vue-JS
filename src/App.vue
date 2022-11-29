@@ -11,14 +11,14 @@
         + Note Baru
       </button>
 
-      <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+      <ListNotes :propEditNote="editNote"/>
     </div>
     <!-- List -->
   </div>
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propRemoveNote="removeNote" :propDataForm="dataForm"/>
+    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propRemoveNote="removeNote" />
   </div>
 </template>
 
@@ -29,15 +29,7 @@ import FormNotes from './components/formNotes.vue'
 export default {
   name: 'App',
   data: function(){
-            return{
-                dataForm: {},
-                notes: [
-                    {id: 1, title: 'wegodev',
-                    description: 'Ini isi wegode'},
-                    {id: 2, title: 'Super User',
-                    description: 'Ini isi Super User'}
-                ]
-            }
+      return{}
   },
   components: {
     ListNotes,
@@ -63,13 +55,6 @@ export default {
       let newNote = { 'id': newId, 'title' : title, 'description' : description }
 
       this.notes.push(newNote);
-      this.editNote(newId);
-    },
-    editNote(id){
-      // console.log('App Vue : ' + id);
-
-      this.dataForm = this.notes.find(note => note.id === id);
-      // console.log(this.dataForm);
     },
     updateNote(id, title, description){
       let noteIndex = this.notes.findIndex(note => note.id === id);
