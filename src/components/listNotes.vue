@@ -45,6 +45,13 @@
                 
                 this.notes.splice(noteIndex, 1);
             })
+
+            this.emitter.on('emitUpdate', data => {
+                let noteIndex = this.notes.findIndex(note => note.id === data.id);
+                
+                this.notes[noteIndex].title = data.title;
+                this.notes[noteIndex].description = data.description;
+            })
         }
     }
 </script>

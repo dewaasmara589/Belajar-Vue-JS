@@ -21,9 +21,6 @@
         props: {
             propSaveNote: {
                 type: Function
-            },
-            propUpdateNote: {
-                type: Function
             }
         },
         data: function(){
@@ -39,10 +36,16 @@
                 e.preventDefault();
                 // console.log(this.title, this.description);
 
+                let data = {
+                    'title': this.title,
+                    'description': this.description
+                }
+
                 if (this.id === 0){
                     this.propSaveNote(this.title, this.description);
                 }else{
-                    this.propUpdateNote(this.id, this.title, this.description);
+                    data.id = this.id;
+                    this.emitter.emit('emitUpdate', data);
                 }
             },
             submitRemove(){
