@@ -32,10 +32,10 @@ export default {
             return{
                 dataForm: {},
                 notes: [
-                    // {id: 1, title: 'wegodev',
-                    // description: 'Ini isi wegode'},
-                    // {id: 2, title: 'Super User',
-                    // description: 'Ini isi Super User'}
+                    {id: 1, title: 'wegodev',
+                    description: 'Ini isi wegode'},
+                    {id: 2, title: 'Super User',
+                    description: 'Ini isi Super User'}
                 ]
             }
   },
@@ -63,6 +63,7 @@ export default {
       let newNote = { 'id': newId, 'title' : title, 'description' : description }
 
       this.notes.push(newNote);
+      this.editNote(newId);
     },
     editNote(id){
       // console.log('App Vue : ' + id);
