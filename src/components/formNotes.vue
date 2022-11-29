@@ -18,11 +18,7 @@
 <script type="text/javascipt">
     export default{
         name: 'formNotes',
-        props: {
-            propSaveNote: {
-                type: Function
-            }
-        },
+        props: {},
         data: function(){
             return{
                 id: 0,
@@ -42,7 +38,7 @@
                 }
 
                 if (this.id === 0){
-                    this.propSaveNote(this.title, this.description);
+                    this.emitter.emit('emitSave', data);
                 }else{
                     data.id = this.id;
                     this.emitter.emit('emitUpdate', data);
@@ -62,8 +58,6 @@
         },
         mounted(){
             this.emitter.on('emitForm', data => {
-                // console.log(data);
-
                 this.id = data.id;
                 this.title = data.title;
                 this.description = data.description;
