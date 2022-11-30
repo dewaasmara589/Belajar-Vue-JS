@@ -36,6 +36,8 @@
                 let dataForm = this.notes.find(note => note.id === id);
                 // console.log(this.dataForm);
 
+                dataForm.mode = "update";
+
                 this.emitter.emit('emitForm', dataForm);
             },
             createNewId(){
