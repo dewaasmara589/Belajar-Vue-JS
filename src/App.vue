@@ -11,14 +11,14 @@
         + Note Baru
       </button>
 
-      <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+      <ListNotes/>
     </div>
     <!-- List -->
   </div>
   <div class="kanan">
     <!-- Form -->
 
-    <formNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propRemoveNote="removeNote" :propDataForm="dataForm"/>
+    <formNotes />
   </div>
 </template>
 
@@ -29,15 +29,7 @@ import FormNotes from './components/formNotes.vue'
 export default {
   name: 'App',
   data: function(){
-            return{
-                dataForm: {},
-                notes: [
-                    {id: 1, title: 'wegodev',
-                    description: 'Ini isi wegode'},
-                    {id: 2, title: 'Super User',
-                    description: 'Ini isi Super User'}
-                ]
-            }
+      return{}
   },
   components: {
     ListNotes,
@@ -45,45 +37,9 @@ export default {
   },
   methods: {
     newNote(){
-      this.dataForm = {id: 0, title: '', description: '', mode: 'save'};
-    },
-    saveNote(title, description){
-      // console.log('title di app ' + title);
-      // console.log('description di app ' + description);
-
-      let newId = 0;
-
-      if (this.notes.length === 0){
-        newId = 1;
-      }else{
-        newId = this.notes[this.notes.length - 1].id + 1;
-      }
-
-
-      let newNote = { 'id': newId, 'title' : title, 'description' : description }
-
-      this.notes.push(newNote);
-      this.editNote(newId);
-    },
-    editNote(id){
-      // console.log('App Vue : ' + id);
-
-      this.dataForm = this.notes.find(note => note.id === id);
-      // console.log(this.dataForm);
-
-      this.dataForm.mode = 'update';
-    },
-    updateNote(id, title, description){
-      let noteIndex = this.notes.findIndex(note => note.id === id);
-    
-      this.notes[noteIndex].title = title;
-      this.notes[noteIndex].description = description;
-    },
-    removeNote(id){
-      let noteIndex = this.notes.findIndex(note => note.id === id);
-    
-      // Membuang sebuah array berdasarkan nilai indexnya
-      this.notes.splice(noteIndex, 1);
+      let dataForm = {id: 0, title: '', description: '', mode: 'save'};
+      
+      this.emitter.emit('emitForm', dataForm);
     }
   }
 }

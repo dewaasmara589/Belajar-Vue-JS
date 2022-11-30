@@ -19,20 +19,7 @@
 <script type="text/javascipt">
     export default{
         name: 'formNotes',
-        props: {
-            propSaveNote: {
-                type: Function
-            },
-            propDataForm: {
-                type: Object
-            },
-            propUpdateNote: {
-                type: Function
-            },
-            propRemoveNote: {
-                type: Function
-            }
-        },
+        props: {},
         data: function(){
             return{
                 id: 0,
@@ -43,13 +30,23 @@
         },
         methods : {
             submitSave(){
-                this.propSaveNote(this.title, this.description);
+                let data = {
+                    'title': this.title,
+                    'description': this.description
+                }
+                this.emitter.emit('emitSave', data);
             },
             submitUpdate(){
-                this.propUpdateNote(this.id, this.title, this.description);
+                let data = {
+                    'id': this.id,
+                    'title': this.title,
+                    'description': this.description
+                }
+                this.emitter.emit('emitUpdate', data);
             },
             submitRemove(){
-                this.propRemoveNote(this.id);
+                let data = {id: this.id};
+                this.emitter.emit('emitRemove', data);
 
                 this.resetInput();
             },
@@ -60,13 +57,13 @@
                 this.mode = '';
             }
         },
-        watch:{
-            propDataForm: function(note){
-                this.id = note.id;
-                this.title = note.title;
-                this.description = note.description;
-                this.mode = note.mode;
-            }
+        mounted(){
+            this.emitter.on('emitForm', data => {
+                this.id = data.id;
+                this.title = data.title;
+                this.description = data.description;
+                this.mode = data.mode;
+            });
         }
     }
 </script>
