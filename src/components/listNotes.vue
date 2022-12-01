@@ -21,11 +21,6 @@
                 notes: []
             }
         },
-        props: {
-            propEditNote : {
-                type: Function
-            }
-        },
         methods: {
             editNote(id){
                 // console.log('App Vue : ' + id);
@@ -37,20 +32,9 @@
 
                 this.emitter.emit('emitForm', dataForm);
             },
-            createNewId(){
-                let newId = 0;
-
-                if (this.notes.length === 0){
-                    newId = 1;
-                }else{
-                    newId = this.notes[this.notes.length - 1].id + 1;
-                }
-
-                return newId;
-            },
             getDataAPI(){
                 axios.get('http://localhost/wegodev-notes/resource/note').then(response => {
-                    console.log(response);
+                    // console.log(response);
                     this.notes = response.data;
                 });
             }
@@ -72,12 +56,10 @@
             })
 
             this.emitter.on('emitSave', data => {
-                let newId = this.createNewId();
+                let newNote = { 'id': data.id, 'title' : data.title, 'description' : data.description }
 
-                let newNote = { 'id': newId, 'title' : data.title, 'description' : data.description }
-
-                this.notes.push(newNote);
-                this.editNote(newId);
+                this.notes.unshift(newNote);
+                this.editNote(data.id);
             })
         }
     }
