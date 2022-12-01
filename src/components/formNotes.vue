@@ -36,23 +36,30 @@
                 params.append("title", this.title);
                 params.append("description", this.description);
 
-                axios.post('http://localhost/wegodev-notes/resource/note/create', params).then(response => {
+                axios.post('http://localhost/wegodev-notes/resource/note/create/', params).then(response => {
                     let data = {
-                        'id': response.data.id,
-                        'title': this.title,
-                        'description': this.description
+                        id: response.data.id,
+                        title: this.title,
+                        description: this.description
                     }
                     this.emitter.emit('emitSave', data);
                 });
 
             },
             submitUpdate(){
-                let data = {
-                    'id': this.id,
-                    'title': this.title,
-                    'description': this.description
-                }
-                this.emitter.emit('emitUpdate', data);
+                let params = new URLSearchParams();
+                params.append("id", this.id);
+                params.append("title", this.title);
+                params.append("description", this.description);
+
+                axios.post('http://localhost/wegodev-notes/resource/note/update/', params).then(response => {
+                    let data = {
+                        id: response.data.id,
+                        title: this.title,
+                        description: this.description
+                    }
+                    this.emitter.emit('emitUpdate', data);
+                });
             },
             submitRemove(){
                 let data = {id: this.id};

@@ -56,7 +56,7 @@
             })
 
             this.emitter.on('emitSave', data => {
-                let newNote = { 'id': data.id, 'title' : data.title, 'description' : data.description }
+                let newNote = { id: data.id, 'title' : data.title, 'description' : data.description }
 
                 this.notes.unshift(newNote);
                 this.editNote(data.id);
