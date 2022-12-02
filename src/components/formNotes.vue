@@ -36,7 +36,7 @@
                 params.append("title", this.title);
                 params.append("description", this.description);
 
-                axios.post('http://localhost/wegodev-notes/resource/note/create/', params).then(response => {
+                axios.post('http://putonthemoon.com/note/create/', params).then(response => {
                     let data = {
                         id: response.data.id,
                         title: this.title,
@@ -52,7 +52,7 @@
                 params.append("title", this.title);
                 params.append("description", this.description);
 
-                axios.post('http://localhost/wegodev-notes/resource/note/update/', params).then(response => {
+                axios.post('http://putonthemoon.com/note/update/', params).then(response => {
                     let data = {
                         id: response.data.id,
                         title: this.title,
@@ -65,7 +65,7 @@
                 let params = new URLSearchParams();
                 params.append("id", this.id);
 
-                axios.post('http://localhost/wegodev-notes/resource/note/delete/', params).then(response => {
+                axios.post('http://putonthemoon.com/note/delete/', params).then(response => {
                     let data = {
                         id: response.data.id
                     }
