@@ -33,7 +33,7 @@
                 this.emitter.emit('emitForm', dataForm);
             },
             getDataAPI(){
-                axios.get('http://putonthemoon.com/note').then(response => {
+                axios.get('http://localhost/wegodev-notes/resource/note').then(response => {
                     // console.log(response);
                     this.notes = response.data;
                 });
